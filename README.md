@@ -4,7 +4,7 @@ APK Hoarder is a lightweight Python program that aggregates all applicatios on a
 APK Hoarder's main use is to download all applications installed onto a device, however, due to it's modular ```tasking``` format can perform more powerful operations - such as downloading an apk, running a tools to patch it, and then both uninstall the old apk and install the new one.
 
 ## Installation
-APK Hoarder is fairly simple and so doesn't require any installation requirements, simply clone the repo and run the ```core``` Python file.
+APK Hoarder is fairly simple and so doesn't require any installation requirements, simply clone the repo and run the ```APK-Hoarder``` Python file.
 
 ```
 python3 APK-Hoarder.py
