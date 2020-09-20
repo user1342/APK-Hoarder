@@ -7,7 +7,7 @@ APK Hoarder's main use is to download all applications installed onto a device, 
 APK Hoarder is fairly simple and so doesn't require any installation requirements, simply clone the repo and run the ```core``` Python file.
 
 ```
-python3 core.py
+python3 APK-Hoarder.py
 ```
 
 **Currently only one device connected via ADB is supported.**

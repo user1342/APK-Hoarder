@@ -1,8 +1,7 @@
-import datetime
-import subprocess as sp
 import json
 import os
 import re
+import subprocess as sp
 import time
 
 
@@ -12,7 +11,8 @@ def clean_terminal_response(byte_to_clean):
     :param byte_to_clean:
     :return: a string without newline characters.
     """
-    return byte_to_clean.decode().replace("\r","").replace("\n","")
+    return byte_to_clean.decode().replace("\r", "").replace("\n", "")
+
 
 def run_command(command):
     """
@@ -20,7 +20,7 @@ def run_command(command):
     :param command: a string representation of a shell command
     :return: a list of the result of the provided command
     """
-    proc = sp.Popen(command, shell = True, stdin=sp.PIPE, stdout=sp.PIPE)
+    proc = sp.Popen(command, shell=True, stdin=sp.PIPE, stdout=sp.PIPE)
     lines = proc.stdout.readlines()
     print("Run command: '{}'".format(command))
     if lines is not None and len(lines) > 0:
@@ -28,6 +28,7 @@ def run_command(command):
     else:
         print("No response from command")
     return lines
+
 
 def is_adb_available():
     """
@@ -40,9 +41,7 @@ def is_adb_available():
     if result is None or result == "error: no devices/emulators found":
         adb_available = False
 
-
     return adb_available
-
 
 
 def get_list_of_device_packages():
@@ -59,6 +58,7 @@ def get_list_of_device_packages():
 
     return packages
 
+
 def get_paths(list_of_packages):
     """
     Identifies the apk path of for a list of packages
@@ -68,7 +68,7 @@ def get_paths(list_of_packages):
     list_of_paths = []
 
     for package in list_of_packages:
-        package = package.replace("package:","")
+        package = package.replace("package:", "")
         paths = run_command("adb shell pm path {}".format(package))
 
         for path in paths:
@@ -77,6 +77,7 @@ def get_paths(list_of_packages):
             list_of_paths.append(path)
 
     return list_of_paths
+
 
 def get_tasking():
     """
@@ -89,7 +90,7 @@ def get_tasking():
             data = json.load(json_file)
             tasking = data["tasks"]
     else:
-        raise Exception("Tasking JSON file not provided at '{}'".format(os.path.join(os.getcwd(),tasking_file_name)))
+        raise Exception("Tasking JSON file not provided at '{}'".format(os.path.join(os.getcwd(), tasking_file_name)))
 
     return tasking
 
@@ -102,11 +103,11 @@ if is_adb_available():
     # Loops through all application packages on the device and in turn their apk paths
     for application_path in paths_to_review:
         # Performs each command in the tasking file replacing the keywords
-        application_name = re.search("([^\/]*$)",application_path).group(0)
+        application_name = re.search("([^\/]*$)", application_path).group(0)
         for command in get_tasking():
             # Replace keywords if used
-            command = command.replace("<applications_path>",application_path)
-            command = command.replace("<applications_name>",application_name)
+            command = command.replace("<applications_path>", application_path)
+            command = command.replace("<applications_name>", application_name)
             run_command(command)
             time.sleep(0.5)
 
