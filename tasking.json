@@ -1,0 +1,5 @@
+{
+  "tasks": [
+    "adb pull <applications_path>"
+  ]
+}
