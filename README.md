@@ -13,7 +13,7 @@ python3 APK-Hoarder.py
 **Currently only one device connected via ADB is supported.**
 
 ## Configuration 
-APK Hoarder will perform automated tasks on all APKs on a device. The example tasking configuration provided, as seen below, will download al APKs on the device to the Python scripts CWD.
+APK Hoarder will perform automated tasks on all APKs on a device. The example tasking configuration provided, as seen below, will download all APKs on the device to the Python script's CWD.
 
 ```json
 {
