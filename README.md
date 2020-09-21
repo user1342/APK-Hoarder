@@ -2,7 +2,7 @@
     <img width=100% src="hoarder-logo.png">
   </a>
 </p>
-<p align="center"> 📱 Perform mass actions on all APKs on a device 🕵️</p>
+<p align="center"> 📱 Perform mass actions on all APKs on a device 📦</p>
 
 <br>
 
@@ -10,7 +10,7 @@
 APK Hoarder is a lightweight Python program that aggregates all applications on an Android device and performs configurable tasking on them (e.g. pull, configure, push, etc).
  - Pull all APKs off a device 📱
  - Mass decomilation of APKs 📦
- - Perform bulk operations on the APKs 💾
+ - Perform bulk operations on the APKs ⚙️
 
 APK Hoarder's main use is to download all applications installed onto a device, however, due to it's modular ```tasking``` format can perform more powerful operations - such as downloading an apk, running a tools to patch it, and then both uninstall the old apk and install the new one.
 
