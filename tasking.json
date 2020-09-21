@@ -1,5 +1,7 @@
 {
   "tasks": [
-    "adb pull <applications_path>"
+    "adb pull <applications_path> ./<applications_name>-<iteration>",
+    "apktool.bat d <applications_name>-<iteration> -f",
+    "cd .."
   ]
 }

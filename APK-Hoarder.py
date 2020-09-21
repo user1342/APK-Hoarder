@@ -3,6 +3,7 @@ import os
 import re
 import subprocess as sp
 import time
+from threading import Timer
 
 
 def clean_terminal_response(byte_to_clean):
@@ -20,13 +21,17 @@ def run_command(command):
     :param command: a string representation of a shell command
     :return: a list of the result of the provided command
     """
-    proc = sp.Popen(command, shell=True, stdin=sp.PIPE, stdout=sp.PIPE)
-    lines = proc.stdout.readlines()
     print("Run command: '{}'".format(command))
+
+    proc = sp.run(command, timeout=20, capture_output=True)
+    lines = proc.stdout.readlines()
+
     if lines is not None and len(lines) > 0:
         print("\tResult: '{}...".format(lines[0]))
     else:
         print("No response from command")
+
+    proc.kill()
     return lines
 
 
@@ -99,15 +104,18 @@ def get_tasking():
 if is_adb_available():
 
     paths_to_review = get_paths(get_list_of_device_packages())
+    iteration = 0
 
     # Loops through all application packages on the device and in turn their apk paths
     for application_path in paths_to_review:
+        iteration = iteration + 1
         # Performs each command in the tasking file replacing the keywords
         application_name = re.search("([^\/]*$)", application_path).group(0)
         for command in get_tasking():
             # Replace keywords if used
             command = command.replace("<applications_path>", application_path)
             command = command.replace("<applications_name>", application_name)
+            command = command.replace("<iteration>", str(iteration))
             run_command(command)
             time.sleep(0.5)
 
