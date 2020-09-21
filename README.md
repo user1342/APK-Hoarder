@@ -37,3 +37,4 @@ APK Hoarder will perform automated tasks on all APKs on a device. The example ta
 The following keywords can be used in the tasking config which will be switched out at runtime.
 - ```<applications_path>``` - This will be replaced with the application's path on the Android device. For example ```/system/app/YouTube/YouTube.apk```.
 - ```<applications_name>``` - This will be replaced with the application's name - for example ```YouTube.apk```. This can be used for accessing the file locally if ```adb pull``` was used.
+- ```<iteration>``` - This will be replaced with the number of the application being analysed - e.g. ```1```. Can be used as a unique ID.
