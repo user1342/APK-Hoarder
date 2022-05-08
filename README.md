@@ -1,3 +1,6 @@
+***APKHoarder is nolonger maintained, see [AutoDroid](https://github.com/user1342/AutoDroid).***
+
+
 <p align="center">
     <img width=100% src="hoarder-logo.png">
   </a>
